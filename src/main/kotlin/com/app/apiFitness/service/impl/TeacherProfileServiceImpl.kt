@@ -52,7 +52,7 @@ class TeacherProfileServiceImpl @Autowired constructor(
 
     override fun searchTeacherStudents(searchTeacherStudentsRequestDTO : SearchTeacherStudentsRequestDTO): List<UserProfileModel>? {
         var response = userRepository.findById(searchTeacherStudentsRequestDTO.userId)
-        if(response.isEmpty){
+        if(response != null){
             throw  BusinessException("Nenhum professor encontrado")
         }
         else{
