@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service
 import java.util.stream.Collectors
 
 @Service
-class TrainingSheetServiceImpl() : TrainingSheetService {
+class TrainingSheetServiceImpl() {
 
     @Autowired
     private lateinit var trainingsheetRepository: TrainingsheetRepository
@@ -31,7 +31,7 @@ class TrainingSheetServiceImpl() : TrainingSheetService {
     @Autowired
     private lateinit var trainingHasTrainingsheetRepository: TrainingHasTrainingsheetRepository
 
-    override fun create(trainingSheetDTO: TrainingSheetCreateRequestDTO) {
+     fun create(trainingSheetDTO: TrainingSheetCreateRequestDTO) {
         if(trainingsheetRepository.findByName(trainingSheetDTO.trainingSheetModel.name) != null){
             saveTrainingSheet(trainingSheetDTO.trainingSheetModel)
         }
@@ -57,7 +57,7 @@ class TrainingSheetServiceImpl() : TrainingSheetService {
         return trainingHasTrainingsheetRepository.save(trainingHasTrainingsheetEntity)
     }
 
-    override fun searchAllTrainingSheets(id: Long): SearchTrainingSheetResponseDTO {
+     fun searchAllTrainingSheets(id: Long): SearchTrainingSheetResponseDTO {
 //        SELECT id_fichaTreino FROM fichaTreino WHERE professorId = 3
         var userResponse = userRepository.findById(id)
         var response = SearchTrainingSheetResponseDTO()
@@ -75,7 +75,7 @@ class TrainingSheetServiceImpl() : TrainingSheetService {
 
     }
 
-    override fun change(changeTrainingSheetRequestDTO: ChangeTrainingSheetRequestDTO) {
+     fun change(changeTrainingSheetRequestDTO: ChangeTrainingSheetRequestDTO) {
             saveTrainingSheet(changeTrainingSheetRequestDTO.trainingSheetModel)
     }
 
